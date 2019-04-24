@@ -335,11 +335,12 @@ When a true value is provided, this option will cause is_pidfile_running() to
 traverse C</proc/$pid/fd> to ensure a current file descriptor is held by a
 given process for the specified PID file.
 
-This option is only useful when B<keep_open> is also enabled, or when a pid
-file supplied by an external entity is passed to is_pidfile_running().  In
-other words, if this option is set when is_pidfile_running() is called, that
-function will always return false unless an open file descriptor is held for
-the same PID file by the process of that same PID.
+This option is only useful when the PID in the pidfile still holds an open
+file descriptor to the pid file. I<If it does not then this will always
+return false.>
+
+To accomplish this in processes that use C<pid_file()> you must create the
+C<Unix::PID::Tiny> object w/ B<keep_open> set to true.
 
 =back
 
