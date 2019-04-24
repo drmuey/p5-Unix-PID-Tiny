@@ -298,7 +298,7 @@ footprint
 
 =head1 VERSION
 
-This document describes Unix::PID::Tiny version 0.92.
+This document describes Unix::PID::Tiny version 0.93.
 
 =head1 SYNOPSIS
 
