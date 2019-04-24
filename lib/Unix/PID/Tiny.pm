@@ -3,7 +3,7 @@ package Unix::PID::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.93';
+our $VERSION = '0.94';
 
 sub new {
     my ( $self, $args_hr ) = @_;
@@ -298,7 +298,7 @@ footprint
 
 =head1 VERSION
 
-This document describes Unix::PID::Tiny version 0.93.
+This document describes Unix::PID::Tiny version 0.94.
 
 =head1 SYNOPSIS
 
