@@ -1,5 +1,8 @@
 Revision history for Unix-PID-Tiny
 
+0.93 Wed Apr 24 14:39:03 2019
+    - declare File::Slurp dependency
+
 0.92 Thu Apr 18 15:02:03 2019
     - thanks to xantronix for both all of these features (and some nice fixups to the tests):
         - add support for persistent PID files; allow traversing /proc/$pid/fd

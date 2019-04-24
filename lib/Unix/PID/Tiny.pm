@@ -3,7 +3,7 @@ package Unix::PID::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.92';
+our $VERSION = '0.93';
 
 sub new {
     my ( $self, $args_hr ) = @_;
