@@ -8,10 +8,16 @@ WriteMakefile(
     ABSTRACT_FROM => 'lib/Unix/PID/Tiny.pm',
     PL_FILES      => {},
     PREREQ_PM     => {
-        'Test::More'     => 0,
-        'Test::MockFile' => 0,
-        'File::Slurp'    => 0
+        'File::Slurp' => 0,
+        'File::Temp'  => 0
     },
-    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES    => 'Unix-PID-Tiny-*' },
+    BUILD_REQUIRES => {'ExtUtils::MakeMaker' => 0},
+    TEST_REQUIRES  => {
+        'Test::More'       => 0,
+        'Test::MockFile'   => 0,
+        'Test::NoWarnings' => 0,
+        'Test::Warn'       => 0
+    },
+    dist  => {COMPRESS => 'gzip -9f', SUFFIX => 'gz',},
+    clean => {FILES    => 'Unix-PID-Tiny-*'},
 );
