@@ -31,10 +31,16 @@
          }
       },
       "runtime" : {
+         "requires" : {}
+      },
+      "test" : {
          "requires" : {
             "File::Slurp" : "0",
+            "File::Temp" : "0",
             "Test::MockFile" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0",
+            "Test::NoWarnings" : "0",
+            "Test::Warn" : "0"
          }
       }
    },
