@@ -3,7 +3,7 @@ package Unix::PID::Tiny;
 use strict;
 use warnings;
 
-our $VERSION = '0.95';
+our $VERSION = '0.96';
 
 sub new {
     my ( $self, $args_hr ) = @_;
@@ -250,8 +250,10 @@ sub pid_file_no_unlink {
         unlink $pid_file;                                  # must be a stale PID file, so try to remove it for sysopen()
     }
 
+    my $tmp_pid_file = "$pid_file.$newpid";
+
     # write only if it does not exist:
-    my $pid_fh = _sysopen($pid_file);
+    my $pid_fh = _sysopen($tmp_pid_file);
     if ( !$pid_fh ) {
         return 0 if $passes >= $retry_conf->[0];
         if ( ref( $retry_conf->[$passes] ) eq 'CODE' ) {
@@ -264,6 +266,8 @@ sub pid_file_no_unlink {
     }
 
     syswrite( $pid_fh, int( abs($newpid) ) );
+
+    rename( $tmp_pid_file, $pid_file );
 
     if ( $self->{'keep_open'} ) {
         push @{ $self->{'open_handles'} }, $pid_fh;
@@ -298,7 +302,7 @@ footprint
 
 =head1 VERSION
 
-This document describes Unix::PID::Tiny version 0.95.
+This document describes Unix::PID::Tiny version 0.96.
 
 =head1 SYNOPSIS
 

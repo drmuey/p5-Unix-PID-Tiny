@@ -1,5 +1,10 @@
 Revision history for Unix-PID-Tiny
 
+0.96 Tue Apr 30 21:48:50 2019
+    - write PID file to temporary file, then rename it so that PID files can
+      be accessed atomically, avoiding race conditions where PID files may be
+      empty when first read
+
 0.95 Tue Apr 30 13:48:03 2019
     - use syswrite() rather than print() to immediately write PID to file
 
