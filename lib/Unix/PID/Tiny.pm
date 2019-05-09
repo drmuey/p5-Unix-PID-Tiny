@@ -148,7 +148,7 @@ sub is_pidfile_running {
 
         opendir my $dh, $dir or return;
 
-        while ( my $dirent = readdir $dh ) {
+        while ( defined ( my $dirent = readdir $dh ) ) {
             next if $dirent eq '.' || $dirent eq '..';
 
             my $path = "$dir/$dirent";
@@ -237,7 +237,7 @@ sub pid_file_no_unlink {
 
   EXISTS:
     $passes++;
-    if ( -e $pid_file ) {
+    if ( -e $pid_file && !$self->{'keep_open'} ) {
         my $curpid = $self->get_pid_from_pidfile($pid_file);
 
         # TODO: narrow even more the race condition where $curpid stops running and a new PID is put in
