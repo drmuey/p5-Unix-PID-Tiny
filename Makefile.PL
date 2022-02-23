@@ -11,7 +11,7 @@ WriteMakefile(
     BUILD_REQUIRES => { 'ExtUtils::MakeMaker' => 0 },
     TEST_REQUIRES  => {
         'Test::More'       => 0,
-        'Test::MockFile'   => 0,
+        'Test::MockFile'   => '0.030',
         'Test::NoWarnings' => 0,
         'Test::Warn'       => 0,
         'File::Slurp'      => 0,
