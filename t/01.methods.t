@@ -10,7 +10,7 @@ use Test::More tests => 85 + 1;    # +1 is for NoWarnings
 use Test::NoWarnings;
 
 use Test::Warn;
-use Test::MockFile;
+use Test::MockFile 'nostrict';
 
 our $current_kill  = sub { diag( "kill: " . explain( \@_ ) ) };
 our $current_sleep = sub { diag( "sleep: " . explain( \@_ ) ) };
@@ -298,8 +298,9 @@ is( $no_exec->{'ps_path'}, "", "new() ps_path is empty when given a dir whose ps
 
     push @mocked, Test::MockFile->file( "/my.pid", "54321\n", { 'mtime' => $now - 60 } );
     push @mocked, Test::MockFile->file( "/other.pid", "9999999999\n" );
-    push @mocked, Test::MockFile->dir( "/proc/54321",    ['fds'] );
-    push @mocked, Test::MockFile->dir( "/proc/54321/fd", ['3'] );
+    push @mocked, Test::MockFile->new_dir( "/proc/54321");
+    push @mocked, Test::MockFile->file( '/proc/54321/fds', '');
+    push @mocked, Test::MockFile->new_dir( "/proc/54321/fd" );
     push @mocked, Test::MockFile->symlink( "/my.pid" => "/proc/54321/fd/3" );
 
     ok( $p->is_pidfile_running("/my.pid"),     "is_pidfile_running: returns true with keep_open, check_proc_open_fds on valid PID file" );
